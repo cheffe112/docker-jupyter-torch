@@ -8,3 +8,10 @@ RUN git clone https://github.com/facebook/iTorch.git /usr/local/itorch \
   && cd /usr/local/itorch \
   && luarocks make \
   && cp -r /root/.ipython/* /usr/local/share/jupyter/
+
+RUN chmod -R a+rw /home
+
+# fix some weird error with a deprecated dateutil version
+RUN pip install --upgrade pip
+RUN pip install python-dateutil --upgrade
+
