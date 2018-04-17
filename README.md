@@ -1,5 +1,5 @@
 # docker-jupyter-torch
-Docker images with Jupyter and Torch, fork from https://github.com/bethgelab/docker-jupyter-torch
+Docker images with Jupyter and Torch, fork of dhunter/itorch-notebook
 
 Automatically builds into jacobsrobotics/docker-jupyter-torch, use
 ```
