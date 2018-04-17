@@ -1,14 +1,14 @@
-FROM bethgelab/jupyter-torch:cuda8.0-cudnn5
+FROM dhunter/itorch-notebook
 
 MAINTAINER Tobias Fromm <t.fromm@jacobs-university.de>
 
-# This is a fix for bethgelab/jupyter-deeplearning-x:cuda8.0-cudnn5 which install iTorch into /usr/local instead of usr/local.
-
-RUN git clone https://github.com/facebook/iTorch.git /usr/local/itorch \
-  && cd /usr/local/itorch \
-  && luarocks make \
-  && cp -r /root/.ipython/* /usr/local/share/jupyter/
-
-# fix some weird error with a deprecated dateutil version
 RUN pip install --upgrade pip
+
+# install matplotlib
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y python-matplotlib && rm -rf /var/lib/apt/lists/*
+
+# fix some weird error regarding an outdated dateutil version
 RUN pip install python-dateutil --upgrade
+
+# install pytorch
+RUN pip install torch torchvision
